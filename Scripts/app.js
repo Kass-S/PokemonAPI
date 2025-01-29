@@ -5,7 +5,10 @@ let pkmnRandom = document.getElementById("pkmnRandom");
 
 let pkmnAbilities = document.getElementById("pkmnAbilities");
 let pkmnMoves = document.getElementById("pkmnMoves");
+
+let pkmnImage = document.getElementById("pkmnImage");
 let pkmnNameNumber = document.getElementById("pkmnNameNumber");
+
 let pkmnType = document.getElementById("pkmnType");
 let pkmnEvolutionLine = document.getElementById("pkmnEvolutionLine");
 let pkmnLocationText = document.getElementById("pkmnLocationText");
@@ -23,29 +26,26 @@ pkmnUserSearchBtn.addEventListener('click', async () => {
     console.log(pkmnData.id);
     pkmnNameNumber.innerText = `${pkmnData.name} - ${pkmnData.id}`;
 
-    console.log(pkmnData.sprites.other["official-artwork"].front_default);
+    pkmnImage.src = pkmnData.sprites.other["official-artwork"].front_default;
     console.log(pkmnData.sprites.other["official-artwork"].front_shiny);
 
     for(let i = 0; i < pkmnData.types.length; i++){
         typeList += pkmnData.types[i].type.name + "\n";
     }
-    console.log(typeList);
     pkmnType.innerText = typeList;
 
     for(let i = 0; i < pkmnData.abilities.length; i++){
         abilityList += pkmnData.abilities[i].ability.name + "\n";
     }
-    console.log(abilityList);
     pkmnAbilities.innerText = abilityList;
 
     for(let i = 0; i < pkmnData.moves.length; i++)
     {
         moveList += pkmnData.moves[i].move.name + ", ";
     }
-    console.log(moveList);
+    pkmnMoves.innerText = moveList;
 
     let pkmnLocation = await GetLocation(pkmnData.id);
-    console.log(pkmnLocation);
     pkmnLocationText.innerText = pkmnLocation;
 })
 
