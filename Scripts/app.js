@@ -3,13 +3,18 @@ let pkmnUserSearchBtn = document.getElementById("pkmnUserSearchBtn");
 let pkmnUserSearch = document.getElementById("pkmnUserSearch");
 let pkmnRandom = document.getElementById("pkmnRandom");
 
-
+let pkmnAbilities = document.getElementById("pkmnAbilities");
+let pkmnMoves = document.getElementById("pkmnMoves");
 
 let userSearch = "pikachu";
 let moveList = "";
 let abilityList = "";
 let typeList = "";
 //GetPokemon();
+
+pkmnUserSearchBtn.addEventListener('click', async () => {
+    
+})
 
 const GetPokemon = async () => {
     const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${userSearch}`);

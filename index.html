@@ -8,40 +8,40 @@
 </head>
 <body class="bg-[url(/Assets/bgPkmn.png)] bg-no-repeat lg:bg-cover">
 
-    <div class="bg-blue-800 border-blue-950 border-4 rounded-xl text-lg text-white m-20 lg:mx-150">
+    <div class="text-white grid grid-rows-4 grid-cols-1 gap-5 mx-10 sm:mx-20 lg:mx-30 md:gap-10 md:gap-y-0 md:grid-cols-3 md:grid-rows-2">
+        
+        <div class="bg-blue-800 border-blue-950 border-4 rounded-xl text-lg text-white my-10 drop-shadow-lg md:col-[2] row-[1] h-13">
 
-        <i id="pkmnUserSearchBtn" class="fa-solid fa-magnifying-glass fa-sm mx-2 cursor-pointer " style="color: #ffffff;"></i>
-
-        <input id="pkmnUserSearch" type="text" placeholder=" Search" class="bg-blue-500 rounded-md lg:pr-10 py-2 ">
-
-        <i id="pkmnRandom" class="fa-solid fa-shuffle fa-sm mx-2 cursor-pointer" style="color: #ffffff;"></i>
-    </div>
+            <i id="pkmnUserSearchBtn" class="fa-solid fa-magnifying-glass fa-sm mx-2 cursor-pointer col" style="color: #ffffff;"></i>
     
+            <input id="pkmnUserSearch" type="text" placeholder=" Search" class="bg-blue-500 rounded-md py-2 lg:pr-28 md:pr-0">
+    
+            <i id="pkmnRandom" class="fa-solid fa-shuffle fa-sm mx-2 cursor-pointer" style="color: #ffffff;"></i>
+        </div>
+        
+        <div class="bg-blue-800 border-blue-950 border-6 rounded-xl drop-shadow-lg md:col-[1] md:row-[2] row-[4] ">
+            <p class="flex justify-center text-3xl mt-5">Abilities:</p>
+            <p id="pkmnAbilities"></p>
 
-    <div class="text-white grid md:grid-cols-3 md:grid-rows-1 grid-rows-3 grid-cols-1">
-        <div class="bg-blue-800 border-blue-950 border-6 rounded-xl md:col-[1] md:row-[1] row-[3]">
-            <p>Abilities:</p>
-            <p></p>
-
-            <p>Moves:</p>
-            <p></p>            
+            <p class="flex justify-center text-3xl mt-5">Moves:</p>
+            <p id="pkmnMoves" class="overflow-y-scroll">sfshdrgsdfwdfsg ersdrsdgbsddrdgfhgjhjg hgtrfedrwthryjhgtrethj gdfsdergthdf sdasEAFRGTDHFSEQRWTEH YRJHGTRWFEQTHYJHFGDFSDE</p>            
         </div>
 
-        <div class="bg-blue-800 border-blue-950 border-6 rounded-xl md:col-[2] row-[1]">
+        <div class="bg-blue-800 border-blue-950 border-6 rounded-xl drop-shadow-lg md:col-[2] row-[2]">
             <img src="" alt="">
-            <p>Name - Number</p>
+            <p class="flex justify-center text-3xl mt-5">Name - Number</p>
             <p>Pokedex Entry</p>
 
         </div>
 
-        <div class="bg-blue-800 border-blue-950 border-6 rounded-xl md:col-[3] md:row-[1] row-[2]">
-            <p>Type:</p>
+        <div class="bg-blue-800 border-blue-950 border-6 rounded-xl drop-shadow-lg md:col-[3] md:row-[2] row-[3]">
+            <p class="flex justify-center text-3xl mt-5">Type:</p>
             <p></p>
 
-            <p>Evolution Line:</p>
+            <p class="flex justify-center text-3xl mt-5">Evolution Line:</p>
             <p></p>
 
-            <p>Location:</p>
+            <p class="flex justify-center text-3xl mt-5">Location:</p>
             <p></p>
         </div>
     </div>
