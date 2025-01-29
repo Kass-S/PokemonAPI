@@ -1,4 +1,5 @@
 
+
 let pkmnUserSearchBtn = document.getElementById("pkmnUserSearchBtn");
 let pkmnUserSearch = document.getElementById("pkmnUserSearch");
 let pkmnRandom = document.getElementById("pkmnRandom");
@@ -17,29 +18,14 @@ let pkmnLocationText = document.getElementById("pkmnLocationText");
 let userSearch = "pikachu";
 let isShiny = false;
 
-//GetPokemon();
 
-pokemonShinyBtn.addEventListener('click', async () => {
-    let pkmnData = await GetPokemon(userSearch);
-    if(isShiny == false){
-        pkmnImage.src = pkmnData.sprites.other["official-artwork"].front_shiny;
-        isShiny = true;
-    }else{
-        pkmnImage.src = pkmnData.sprites.other["official-artwork"].front_default;
-        isShiny = false;
-    } 
-})
-
-pkmnUserSearchBtn.addEventListener('click', async () => {
+const GetAllPokemon = async (userSearch) => {
     let moveList = "";
     let abilityList = "";
     let typeList = "";
     let evoList = "";
-
-    userSearch = pkmnUserSearch.value;
-
+        
     let pkmnData = await GetPokemon(userSearch);
-    console.log(pkmnData)
     if(pkmnData.id != null){
         pkmnNameNumber.innerText = `${pkmnData.name} - ${pkmnData.id}`;
 
@@ -62,6 +48,9 @@ pkmnUserSearchBtn.addEventListener('click', async () => {
         pkmnMoves.innerText = moveList;
 
         let pkmnLocation = await GetLocation(pkmnData.id);
+        if(pkmnLocation == null){
+            pkmnLocationText.innerText = "N/A";
+        }
         pkmnLocationText.innerText = pkmnLocation;
 
         let pkmonEvoLine = await GetEvolutionLine(pkmnData.id);
@@ -84,8 +73,7 @@ pkmnUserSearchBtn.addEventListener('click', async () => {
             pkmnEvolutionLine.innerText = "N/A";    
         }
     }
-    
-})
+}
 
 const GetPokemon = async (userSearch) => {
     const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${userSearch}`);
@@ -107,9 +95,14 @@ const GetPokemon = async (userSearch) => {
 const GetLocation = async (pkmnId) => {
     const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${pkmnId}/encounters`)
     const data = await promise.json();
-    console.log(data[0].location_area.name);
-    let location = data[0].location_area.name;
-    return location;
+    if(data.length == 0){
+        pkmnLocationText.innerText = "N/A";
+    }else{
+        console.log(data[0].location_area.name);
+        let location = data[0].location_area.name;
+        return location;
+    }
+    
 }
 
 const GetEvolutionLine = async (pkmnId) => {
@@ -128,3 +121,26 @@ const GetEvolutionChain = async (url) =>{
     const data = await promise.json();
     return data;
 }
+
+GetAllPokemon(userSearch);
+
+pokemonShinyBtn.addEventListener('click', async () => {
+    let pkmnData = await GetPokemon(userSearch);
+    if(isShiny == false){
+        pkmnImage.src = pkmnData.sprites.other["official-artwork"].front_shiny;
+        isShiny = true;
+    }else{
+        pkmnImage.src = pkmnData.sprites.other["official-artwork"].front_default;
+        isShiny = false;
+    } 
+})
+
+pkmnUserSearchBtn.addEventListener('click', async () => {
+    userSearch = pkmnUserSearch.value;
+    GetAllPokemon(userSearch);
+})
+
+pkmnRandom.addEventListener('click', async () => {
+    userSearch = Math.floor(Math.random() * 650)
+    GetAllPokemon(userSearch);
+})
