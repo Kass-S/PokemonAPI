@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/output.css">
+    <title>Pokemon API</title>
+</head>
+<body class="bg-[url(/Assets/bgPkmn.png)] bg-no-repeat lg:bg-cover">
+
+    <div class="bg-blue-800 border-blue-950 border-4 rounded-xl text-lg text-white m-20 lg:mx-150">
+
+        <i id="pkmnUserSearchBtn" class="fa-solid fa-magnifying-glass fa-sm mx-2 cursor-pointer " style="color: #ffffff;"></i>
+
+        <input id="pkmnUserSearch" type="text" placeholder=" Search" class="bg-blue-500 rounded-md lg:pr-10 py-2 ">
+
+        <i id="pkmnRandom" class="fa-solid fa-shuffle fa-sm mx-2 cursor-pointer" style="color: #ffffff;"></i>
+    </div>
+    
+
+    <div class="text-white grid md:grid-cols-3 md:grid-rows-1 grid-rows-3 grid-cols-1">
+        <div class="bg-blue-800 border-blue-950 border-6 rounded-xl md:col-[1] md:row-[1] row-[3]">
+            <p>Abilities:</p>
+            <p></p>
+
+            <p>Moves:</p>
+            <p></p>            
+        </div>
+
+        <div class="bg-blue-800 border-blue-950 border-6 rounded-xl md:col-[2] row-[1]">
+            <img src="" alt="">
+            <p>Name - Number</p>
+            <p>Pokedex Entry</p>
+
+        </div>
+
+        <div class="bg-blue-800 border-blue-950 border-6 rounded-xl md:col-[3] md:row-[1] row-[2]">
+            <p>Type:</p>
+            <p></p>
+
+            <p>Evolution Line:</p>
+            <p></p>
+
+            <p>Location:</p>
+            <p></p>
+        </div>
+    </div>
+
+
+    <script src="https://kit.fontawesome.com/16eb7ba860.js" crossorigin="anonymous"></script>
+    <script src="./Scripts/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js"></script>
+</body>
+</html>
