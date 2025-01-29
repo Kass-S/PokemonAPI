@@ -8,34 +8,46 @@ let pkmnMoves = document.getElementById("pkmnMoves");
 
 let pkmnImage = document.getElementById("pkmnImage");
 let pkmnNameNumber = document.getElementById("pkmnNameNumber");
+let pokemonShinyBtn = document.getElementById("pokemonShinyBtn");
 
 let pkmnType = document.getElementById("pkmnType");
 let pkmnEvolutionLine = document.getElementById("pkmnEvolutionLine");
 let pkmnLocationText = document.getElementById("pkmnLocationText");
 
 let userSearch = "pikachu";
-let moveList = "";
-let abilityList = "";
-let typeList = "";
+let isShiny = false;
+
 //GetPokemon();
 
-pkmnUserSearchBtn.addEventListener('click', async () => {
-    //userSearch = pkmnUserSearch.value;
+pokemonShinyBtn.addEventListener('click', async () => {
     let pkmnData = await GetPokemon(userSearch);
-    console.log(pkmnData.name);
-    console.log(pkmnData.id);
+    if(isShiny == false){
+        pkmnImage.src = pkmnData.sprites.other["official-artwork"].front_shiny;
+        isShiny = true;
+    }else{
+        pkmnImage.src = pkmnData.sprites.other["official-artwork"].front_default;
+        isShiny = false;
+    } 
+})
+
+pkmnUserSearchBtn.addEventListener('click', async () => {
+    let moveList = "";
+    let abilityList = "";
+    let typeList = "";
+
+    userSearch = pkmnUserSearch.value;
+    let pkmnData = await GetPokemon(userSearch);
     pkmnNameNumber.innerText = `${pkmnData.name} - ${pkmnData.id}`;
 
-    pkmnImage.src = pkmnData.sprites.other["official-artwork"].front_default;
-    console.log(pkmnData.sprites.other["official-artwork"].front_shiny);
+    pkmnImage.src = pkmnData.sprites.other["official-artwork"].front_default;    
 
     for(let i = 0; i < pkmnData.types.length; i++){
-        typeList += pkmnData.types[i].type.name + "\n";
+        typeList += pkmnData.types[i].type.name + ", ";
     }
     pkmnType.innerText = typeList;
 
     for(let i = 0; i < pkmnData.abilities.length; i++){
-        abilityList += pkmnData.abilities[i].ability.name + "\n";
+        abilityList += pkmnData.abilities[i].ability.name + ", ";
     }
     pkmnAbilities.innerText = abilityList;
 
@@ -61,4 +73,10 @@ const GetLocation = async (pkmnId) => {
     console.log(Data[0].location_area.name);
     let location = Data[0].location_area.name;
     return location;
+}
+
+const GetEvolutionLine = async () => {
+    const promise = await fetch(``);
+    const data = await promise.json();
+    console.log(data);
 }
