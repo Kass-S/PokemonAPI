@@ -59,6 +59,8 @@ pkmnUserSearchBtn.addEventListener('click', async () => {
 
     let pkmnLocation = await GetLocation(pkmnData.id);
     pkmnLocationText.innerText = pkmnLocation;
+
+    let pkmonEvoLine = await GetEvolutionLine(pkmnData.id); 
 })
 
 const GetPokemon = async (userSearch) => {
@@ -75,8 +77,17 @@ const GetLocation = async (pkmnId) => {
     return location;
 }
 
-const GetEvolutionLine = async () => {
-    const promise = await fetch(``);
+const GetEvolutionLine = async (pkmnId) => {
+    const promise = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pkmnId}`);
     const data = await promise.json();
-    console.log(data);
+    console.log(data.evolution_chain.url);
+    let evoChainUrl = data.evolution_chain.url;
+    let evoChain = await GetEvolutionChain(evoChainUrl);
+    console.log(evoChain.chain.species.name);
+}
+
+const GetEvolutionChain = async (url) =>{
+    const promise = await fetch(url);
+    const data = await promise.json();
+    return data;
 }
