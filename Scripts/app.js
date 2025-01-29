@@ -48,7 +48,7 @@ const GetAllPokemon = async (userSearch) => {
         pkmnMoves.innerText = moveList;
 
         let pkmnLocation = await GetLocation(pkmnData.id);
-        if(pkmnLocation == null){
+        if(pkmnLocation.length == 0){
             pkmnLocationText.innerText = "N/A";
         }
         pkmnLocationText.innerText = pkmnLocation;
