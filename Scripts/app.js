@@ -47,12 +47,6 @@ const GetAllPokemon = async (userSearch) => {
         }
         pkmnMoves.innerText = moveList;
 
-        let pkmnLocation = await GetLocation(pkmnData.id);
-        if(pkmnLocation.length == 0){
-            pkmnLocationText.innerText = "N/A";
-        }
-        pkmnLocationText.innerText = pkmnLocation;
-
         let pkmonEvoLine = await GetEvolutionLine(pkmnData.id);
         if(pkmonEvoLine.chain.evolves_to.length > 0){
 
@@ -68,10 +62,18 @@ const GetAllPokemon = async (userSearch) => {
                 }
             }
             pkmnEvolutionLine.innerText = pkmonEvoLine.chain.species.name + "-" + evoList;
-
         }else{
             pkmnEvolutionLine.innerText = "N/A";    
         }
+
+        let pkmnLocation = await GetLocation(pkmnData.id);
+        if(pkmnLocation){
+            pkmnLocationText.innerText = pkmnLocation;
+            
+        }else{
+            pkmnLocationText.innerText = "N/A";
+        }
+        
     }
 }
 
@@ -93,14 +95,15 @@ const GetPokemon = async (userSearch) => {
 }
 
 const GetLocation = async (pkmnId) => {
-    const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${pkmnId}/encounters`)
-    const data = await promise.json();
-    if(data.length == 0){
-        pkmnLocationText.innerText = "N/A";
-    }else{
+    try {
+        const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${pkmnId}/encounters`)
+        const data = await promise.json();
         console.log(data[0].location_area.name);
         let location = data[0].location_area.name;
         return location;
+    } catch (error) {
+        console.error("N/A")
+        pkmnLocationText.innerText = "N/A";
     }
     
 }
