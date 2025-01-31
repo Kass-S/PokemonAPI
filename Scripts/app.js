@@ -47,7 +47,7 @@ const GetAllPokemon = async (userSearch) => {
 
         for(let i = 0; i < pkmnData.moves.length; i++)
         {
-            moveList += pkmnData.moves[i].move.name + ", ";
+            moveList += pkmnData.moves[i].move.name + " | ";
         }
         pkmnMoves.innerText = moveList;
 
@@ -56,16 +56,16 @@ const GetAllPokemon = async (userSearch) => {
 
             for(let i = 0; i < pkmonEvoLine.chain.evolves_to.length; i++){
 
-                evoList += pkmonEvoLine.chain.evolves_to[i].species.name + "-";
+                evoList += pkmonEvoLine.chain.evolves_to[i].species.name + " - ";
 
                 if(pkmonEvoLine.chain.evolves_to[i].evolves_to.length > 0){
                     for(let j = 0; j < pkmonEvoLine.chain.evolves_to[i].evolves_to.length; j++){
-                        evoList += pkmonEvoLine.chain.evolves_to[i].evolves_to[j].species.name + "-";
+                        evoList += pkmonEvoLine.chain.evolves_to[i].evolves_to[j].species.name + " - ";
                     }
                     
                 }
             }
-            pkmnEvolutionLine.innerText = pkmonEvoLine.chain.species.name + "-" + evoList;
+            pkmnEvolutionLine.innerText = pkmonEvoLine.chain.species.name + " - " + evoList;
         }else{
             pkmnEvolutionLine.innerText = "N/A";    
         }
