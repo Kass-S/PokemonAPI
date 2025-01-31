@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+@font-face{
+    font-family: "Imprima";
+    src: url(/Assets/fonts/Imprima-Regular.ttf);
+}
+
+@theme{
+    --font-imprima: "Imprima", Arial, Helvetica, sans-serif;
+}

@@ -6,10 +6,22 @@
     <link rel="stylesheet" href="./src/output.css">
     <title>Pokemon API</title>
 </head>
-<body class="bg-[url(/Assets/bgPkmn.png)] bg-no-repeat lg:bg-cover">
+<body class="bg-[url(/Assets/bgPkmn.png)] bg-no-repeat bg-cover font-imprima">
+    <!-- drawer component -->
+    <div id="drawer-top-example" class="fixed top-0 left-0 right-0 z-40 w-full p-4 transition-transform -translate-y-full bg-blue-800 border-b-blue-950 border-b-4" tabindex="-1" aria-labelledby="drawer-top-label">
+        <h5 id="drawer-top-label" class="inline-flex items-center text-3xl text-white">Favorites</h5>
+        <button type="button" data-drawer-hide="drawer-top-example" aria-controls="drawer-top-example" class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+        </svg>
+        <span class="sr-only">Close menu</span>
+        </button>
+        <p class="max-w-lg mb-6 text-lg text-white mt-5"></p>
+    </svg></a>
+    </div>
 
-    <div class="grid grid-rows-2">
-
+    <div class="grid lg:grid-rows-2">
+        
         <div class="text-white grid grid-cols-1 gap-5 mx-10 sm:mx-20 lg:mx-30 md:gap-10 md:gap-y-0 lg:grid-cols-3">
 
             <div class="bg-blue-800 border-blue-950 border-4 rounded-xl text-lg text-white my-10 drop-shadow-lg h-13 col-[2]">
@@ -19,6 +31,9 @@
                 <input id="pkmnUserSearch" type="text" placeholder=" Search" class="bg-blue-500 rounded-md py-2 lg:pr-28 md:pr-0">
         
                 <i id="pkmnRandom" class="fa-solid fa-shuffle fa-sm mx-2 cursor-pointer" style="color: #ffffff;"></i>
+
+                <button id="showFavoritesBtn" class="" type="button" data-drawer-target="drawer-top-example" data-drawer-show="drawer-top-example" data-drawer-placement="top" aria-controls="drawer-top-example"><i class="fa-solid fa-heart fa-sm cursor-pointer" style="color: #ffffff;"></i>
+                </button>
             </div>
 
         
