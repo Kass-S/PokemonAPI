@@ -81,13 +81,27 @@ const GetAllPokemon = async (userSearch) => {
 const GetPokemon = async (userSearch) => {
     const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${userSearch}`);
     if(!promise.ok){
+        pkmnAbilities.innerText = "Invalid. Please enter a pokemon from gens 1-5";
+        pkmnEvolutionLine.innerText = "Invalid. Please enter a pokemon from gens 1-5";
+        pkmnMoves.innerText = "Invalid. Please enter a pokemon from gens 1-5";
+        pkmnLocationText.innerText = "Invalid. Please enter a pokemon from gens 1-5";
+        pkmnType.innerText = "Invalid. Please enter a pokemon from gens 1-5";
+        
         pkmnNameNumber.className = "flex justify-center text-2xl mt-5 mx-5";
         pkmnNameNumber.innerText = "Invalid. Please enter a pokemon from gens 1-5";
     }else{
         const data = await promise.json();
         if(data.id >= 650){
+            pkmnAbilities.innerText = "Invalid. Please enter a pokemon from gens 1-5";
+            pkmnEvolutionLine.innerText = "Invalid. Please enter a pokemon from gens 1-5";
+            pkmnMoves.innerText = "Invalid. Please enter a pokemon from gens 1-5";
+            pkmnLocationText.innerText = "Invalid. Please enter a pokemon from gens 1-5";
+            pkmnType.innerText = "Invalid. Please enter a pokemon from gens 1-5";
+
             pkmnNameNumber.className = "flex justify-center text-2xl mt-5 mx-5";
             pkmnNameNumber.innerText = "Invalid. Please enter a pokemon from gens 1-5";
+            
+            return;
         }
         pkmnNameNumber.className = "flex justify-center text-3xl mt-10 mx-5";
         return data;

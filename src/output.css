@@ -689,6 +689,9 @@
   .h-80 {
     height: calc(var(--spacing) * 80);
   }
+  .h-screen {
+    height: 100vh;
+  }
   .w-3 {
     width: calc(var(--spacing) * 3);
   }
