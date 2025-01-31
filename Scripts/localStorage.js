@@ -1,34 +1,29 @@
-// function saveToLocalStorage(name){
+const saveToFavorites = (pkmn) => {
+    let pkmnArr = getFromFavorites();
 
-//     let nameArr = getFromLocalStorage();
+    if(!pkmnArr.includes(pkmn)){
+        pkmnArr.push(pkmn);
+    }
+    localStorage.setItem('Favorites', JSON.stringify(pkmnArr));
+}
 
-//     if(!nameArr.includes(name)){
-//         nameArr.push(name);
-//     }
+const getFromFavorites = () => {
+    let localStorageData = localStorage.getItem('Favorites');
 
-//     localStorage.setItem('Names', JSON.stringify(nameArr));
-// }
+    if(localStorageData == null){
+        return [];
+    }
+    return JSON.parse(localStorageData);
+}
 
-// function getFromLocalStorage(){
-//     let localStorageData = localStorage.getItem('Names');
+const removeFromFavorites = (pkmn) => {
+    let localStorageData = getFromFavorites();
+    let pkmnIndex = localStorageData.indexOf(pkmn);
 
-//     if(localStorageData == null){
-//         return [];
-//     }
+    localStorageData.splice(pkmnIndex, 1);
 
-//     return JSON.parse(localStorageData);
-// }
-
-// function removeFromLocalStorage(name){
-//     let localStorageData = getFromLocalStorage();
-
-//     let nameIndex = localStorageData.indexOf(name);
-
-//     localStorageData.splice(nameIndex, 1);
-
-//     localStorage.setItem('Names', JSON.stringify(localStorageData));
-
-// }
+    localStorage.setItem('Favorites', JSON.stringify(localStorageData));
+}
 
 
-// export { saveToLocalStorage, getFromLocalStorage, removeFromLocalStorage }
+ export { saveToFavorites, getFromFavorites, removeFromFavorites }

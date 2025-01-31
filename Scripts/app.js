@@ -1,4 +1,4 @@
-
+import { saveToFavorites, getFromFavorites, removeFromFavorites } from "./localStorage.js";
 
 let pkmnUserSearchBtn = document.getElementById("pkmnUserSearchBtn");
 let pkmnUserSearch = document.getElementById("pkmnUserSearch");
