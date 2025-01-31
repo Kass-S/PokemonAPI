@@ -31,52 +31,74 @@ const GetAllPokemon = async (userSearch) => {
         
     let pkmnData = await GetPokemon(userSearch);
     if(pkmnData.id != null){
-        pkmnNameNumber.innerText = `${pkmnData.name} - ${pkmnData.id}`;
+        if(pkmnData.id >= 650){
+            pkmnAbilities.innerText = "Invalid. Please enter a pokemon from gens 1-5";
+            pkmnEvolutionLine.innerText = "Invalid. Please enter a pokemon from gens 1-5";
+            pkmnMoves.innerText = "Invalid. Please enter a pokemon from gens 1-5";
+            pkmnLocationText.innerText = "Invalid. Please enter a pokemon from gens 1-5";
+            pkmnType.innerText = "Invalid. Please enter a pokemon from gens 1-5";
 
-        pkmnImage.src = pkmnData.sprites.other["official-artwork"].front_default;    
-
-        for(let i = 0; i < pkmnData.types.length; i++){
-            typeList.push(pkmnData.types[i].type.name);
-            // typeList += pkmnData.types[i].type.name + ", ";
-        }
-        pkmnType.innerText = typeList.join(", ");
-
-        for(let i = 0; i < pkmnData.abilities.length; i++){
-            abilityList.push(pkmnData.abilities[i].ability.name);
-        }
-        pkmnAbilities.innerText = abilityList.join(", ");
-
-        for(let i = 0; i < pkmnData.moves.length; i++)
-        {
-            moveList.push(pkmnData.moves[i].move.name);
-        }
-        pkmnMoves.innerText = moveList.join(" | ");
-
-        let pkmonEvoLine = await GetEvolutionLine(pkmnData.id);
-        if(pkmonEvoLine.chain.evolves_to.length > 0){
-
-            for(let i = 0; i < pkmonEvoLine.chain.evolves_to.length; i++){
-
-                evoList.push(pkmonEvoLine.chain.evolves_to[i].species.name);
-
-                if(pkmonEvoLine.chain.evolves_to[i].evolves_to.length > 0){
-                    for(let j = 0; j < pkmonEvoLine.chain.evolves_to[i].evolves_to.length; j++){
-                        evoList.push(pkmonEvoLine.chain.evolves_to[i].evolves_to[j].species.name);
-                    }
-                    
-                }
-            }
-            pkmnEvolutionLine.innerText = pkmonEvoLine.chain.species.name + " - " + evoList.join(" - ");
-        }else{
-            pkmnEvolutionLine.innerText = "N/A";    
-        }
-
-        let pkmnLocation = await GetLocation(pkmnData.id);
-        if(pkmnLocation){
-            pkmnLocationText.innerText = pkmnLocation;
+            pkmnNameNumber.className = "flex justify-center text-2xl mt-5 mx-5";
+            pkmnNameNumber.innerText = "Invalid. Please enter a pokemon from gens 1-5";
             
+            return;
         }else{
-            pkmnLocationText.innerText = "N/A";
+            pkmnNameNumber.innerText = `${pkmnData.name} - ${pkmnData.id}`;
+
+            pkmnImage.src = pkmnData.sprites.other["official-artwork"].front_default;    
+
+            for(let i = 0; i < pkmnData.types.length; i++){
+                typeList.push(pkmnData.types[i].type.name);
+            }
+            pkmnType.innerText = typeList.join(", ");
+
+            for(let i = 0; i < pkmnData.abilities.length; i++){
+                abilityList.push(pkmnData.abilities[i].ability.name);
+            }
+            pkmnAbilities.innerText = abilityList.join(", ");
+
+            for(let i = 0; i < pkmnData.moves.length; i++)
+            {
+                moveList.push(pkmnData.moves[i].move.name);
+            }
+            pkmnMoves.innerText = moveList.join(" | ");
+
+            let pkmonEvoLine = await GetEvolutionLine(pkmnData.id);
+            if(pkmonEvoLine.chain.evolves_to.length > 0){
+
+                for(let i = 0; i < pkmonEvoLine.chain.evolves_to.length; i++){
+
+                    let evoLineCheck = await GetPokemon(pkmonEvoLine.chain.evolves_to[i].species.name);
+
+                    if(evoLineCheck.id < 650){
+                        evoList.push(pkmonEvoLine.chain.evolves_to[i].species.name);
+                    }
+
+                    if(pkmonEvoLine.chain.evolves_to[i].evolves_to.length > 0){
+                        for(let j = 0; j < pkmonEvoLine.chain.evolves_to[i].evolves_to.length; j++){
+
+                            let evoLineCheck2 = await GetPokemon(pkmonEvoLine.chain.evolves_to[i].evolves_to[j].species.name);
+
+                            if(evoLineCheck2.id < 650){
+                                evoList.push(pkmonEvoLine.chain.evolves_to[i].evolves_to[j].species.name);
+                            }
+                        }
+                        
+                    }
+                }
+                pkmnEvolutionLine.innerText = pkmonEvoLine.chain.species.name + " - " + evoList.join(" - ");
+            }else{
+                pkmnEvolutionLine.innerText = "N/A";    
+            }
+
+            let pkmnLocation = await GetLocation(pkmnData.id);
+            if(pkmnLocation){
+                pkmnLocationText.innerText = pkmnLocation;
+                
+            }else{
+                pkmnLocationText.innerText = "N/A";
+            }
+        
         }
         
     }
@@ -95,18 +117,6 @@ const GetPokemon = async (userSearch) => {
         pkmnNameNumber.innerText = "Invalid. Please enter a pokemon from gens 1-5";
     }else{
         const data = await promise.json();
-        if(data.id >= 650){
-            pkmnAbilities.innerText = "Invalid. Please enter a pokemon from gens 1-5";
-            pkmnEvolutionLine.innerText = "Invalid. Please enter a pokemon from gens 1-5";
-            pkmnMoves.innerText = "Invalid. Please enter a pokemon from gens 1-5";
-            pkmnLocationText.innerText = "Invalid. Please enter a pokemon from gens 1-5";
-            pkmnType.innerText = "Invalid. Please enter a pokemon from gens 1-5";
-
-            pkmnNameNumber.className = "flex justify-center text-2xl mt-5 mx-5";
-            pkmnNameNumber.innerText = "Invalid. Please enter a pokemon from gens 1-5";
-            
-            return;
-        }
         pkmnNameNumber.className = "flex justify-center text-3xl mt-10 mx-5";
         return data;
     }
