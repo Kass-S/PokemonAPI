@@ -650,6 +650,9 @@
   .mb-10 {
     margin-bottom: calc(var(--spacing) * 10);
   }
+  .ml-2 {
+    margin-left: calc(var(--spacing) * 2);
+  }
   .ml-5 {
     margin-left: calc(var(--spacing) * 5);
   }
@@ -1230,6 +1233,11 @@
   .xl\:gap-x-51 {
     @media (width >= 80rem) {
       column-gap: calc(var(--spacing) * 51);
+    }
+  }
+  .xl\:pr-25 {
+    @media (width >= 80rem) {
+      padding-right: calc(var(--spacing) * 25);
     }
   }
   .xl\:pr-28 {
