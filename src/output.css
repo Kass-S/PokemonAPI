@@ -647,6 +647,9 @@
   .mb-10 {
     margin-bottom: calc(var(--spacing) * 10);
   }
+  .ml-5 {
+    margin-left: calc(var(--spacing) * 5);
+  }
   .block {
     display: block;
   }
@@ -899,6 +902,9 @@
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
+  }
+  .text-black {
+    color: var(--color-black);
   }
   .text-blue-600 {
     color: var(--color-blue-600);

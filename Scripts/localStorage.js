@@ -4,11 +4,11 @@ const saveToFavorites = (pkmn) => {
     if(!pkmnArr.includes(pkmn)){
         pkmnArr.push(pkmn);
     }
-    localStorage.setItem('Favorites', JSON.stringify(pkmnArr));
+    localStorage.setItem('Favorite', JSON.stringify(pkmnArr));
 }
 
 const getFromFavorites = () => {
-    let localStorageData = localStorage.getItem('Favorites');
+    let localStorageData = localStorage.getItem('Favorite');
 
     if(localStorageData == null){
         return [];
@@ -22,7 +22,7 @@ const removeFromFavorites = (pkmn) => {
 
     localStorageData.splice(pkmnIndex, 1);
 
-    localStorage.setItem('Favorites', JSON.stringify(localStorageData));
+    localStorage.setItem('Favorite', JSON.stringify(localStorageData));
 }
 
 

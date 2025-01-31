@@ -3,6 +3,8 @@ import { saveToFavorites, getFromFavorites, removeFromFavorites } from "./localS
 let pkmnUserSearchBtn = document.getElementById("pkmnUserSearchBtn");
 let pkmnUserSearch = document.getElementById("pkmnUserSearch");
 let pkmnRandom = document.getElementById("pkmnRandom");
+let showFavoritesBtn = document.getElementById("showFavoritesBtn");
+let favoritesList = document.getElementById("favoritesList");
 
 let pkmnAbilities = document.getElementById("pkmnAbilities");
 let pkmnMoves = document.getElementById("pkmnMoves");
@@ -86,7 +88,7 @@ const GetPokemon = async (userSearch) => {
         pkmnMoves.innerText = "Invalid. Please enter a pokemon from gens 1-5";
         pkmnLocationText.innerText = "Invalid. Please enter a pokemon from gens 1-5";
         pkmnType.innerText = "Invalid. Please enter a pokemon from gens 1-5";
-        
+
         pkmnNameNumber.className = "flex justify-center text-2xl mt-5 mx-5";
         pkmnNameNumber.innerText = "Invalid. Please enter a pokemon from gens 1-5";
     }else{
@@ -140,6 +142,31 @@ const GetEvolutionChain = async (url) =>{
     return data;
 }
 
+const GetFavoritePokemon = async () => {
+    let favPokemon = getFromFavorites();
+
+    favPokemon.map(pokemon => {
+        console.log(pokemon);
+
+        let p = document.createElement('p');
+        p.className = "mb-6 text-lg text-white mt-5";
+        p.innerText = pokemon;
+
+        let removeBtn = document.createElement('i');
+        removeBtn.type = 'button';
+        removeBtn.className = 'fa-solid fa-x fa-sm cursor-pointer text-white ml-5';
+
+        removeBtn.addEventListener('click', () => {
+            removeFromFavorites(pokemon);
+            p.remove();
+        })
+
+        p.appendChild(removeBtn);
+
+        favoritesList.appendChild(p);
+    })
+}
+
 GetAllPokemon(userSearch);
 
 pokemonShinyBtn.addEventListener('click', async () => {
@@ -165,5 +192,12 @@ pkmnRandom.addEventListener('click', async () => {
 })
 
 addFavoriteBtn.addEventListener('click', async () => {
-    console.log(userSearch);
+    const pkmn = await GetPokemon(userSearch);
+    console.log(pkmn.id);
+    let pkmnFavorite = pkmn.name;
+    saveToFavorites(pkmnFavorite);    
+})
+
+showFavoritesBtn.addEventListener('click', () => {
+    GetFavoritePokemon();
 })
