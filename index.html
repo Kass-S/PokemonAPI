@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./src/output.css">
     <title>Pokemon API</title>
 </head>
-<body class="bg-[url(/Assets/bgPkmn.png)] bg-no-repeat bg-cover font-imprima">
+<body class="bg-[url(/Assets/bgPkmn.png)] bg-no-repeat bg-cover font-imprima ">
     <!-- drawer component -->
     <div id="drawer-top-example" class="fixed top-0 left-0 right-0 z-40 w-full p-4 transition-transform -translate-y-full bg-blue-800 border-b-blue-950 border-b-4 drop-shadow-lg" tabindex="-1" aria-labelledby="drawer-top-label">
         <h5 id="drawer-top-label" class="inline-flex items-center text-3xl text-white">Favorites</h5>
@@ -21,7 +21,6 @@
     </div>
 
     <div class="grid lg:grid-rows-2 grid-rows-4">
-        
         <div class="text-white grid grid-cols-1 gap-5 mx-10 sm:mx-20 lg:mx-30 lg:gap-x-10 lg:grid-cols-3 md:gap-x-0 md:mx-0 md:gap-10 md:grid-cols-4">
 
             <div class="bg-blue-800 border-blue-950 border-4 rounded-xl text-lg text-white my-10 drop-shadow-lg h-13 lg:col-[2] md:col-start-2 md:col-end-4">
@@ -44,9 +43,10 @@
                 <p class="flex justify-center text-3xl mt-5">Moves:</p>
                 <p id="pkmnMoves" class="overflow-y-scroll mx-5 my-2  h-80">sfshdrgsdfwdfsg </p>            
             </div>
+
     
             <div class="bg-blue-800 border-blue-950 border-6 rounded-xl drop-shadow-lg lg:row-[2] lg:col-[2] row-[2] md:col-start-2 md:col-end-4">
-                <div class="max-w-80">
+                <div class="max-w-80 flex justify-center">
                     <img id="pkmnImage" src="" alt="pokemon image" class="flex justify-center h-60 bg-blue-800 drop-shadow-lg rounded-lg w-100% m-5">
                 </div>
                 
@@ -59,6 +59,7 @@
                     <i id="addFavoriteBtn" class="fa-regular fa-heart fa-2xl mx-8 cursor-pointer mt-20" style="color: #ffffff;"></i>
                 </div>
             </div>
+
     
             <div class="bg-blue-800 border-blue-950 border-6 rounded-xl drop-shadow-lg lg:row-[2] lg:col-[3] md:col-start-2 md:col-end-4 row-[3]">
                 <p class="flex justify-center text-3xl mt-5">Type:</p>

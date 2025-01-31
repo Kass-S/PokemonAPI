@@ -590,6 +590,9 @@
   .row-\[4\] {
     grid-row: 4;
   }
+  .m-0 {
+    margin: calc(var(--spacing) * 0);
+  }
   .m-5 {
     margin: calc(var(--spacing) * 5);
   }
@@ -811,8 +814,23 @@
   .bg-cover {
     background-size: cover;
   }
+  .bg-fixed {
+    background-attachment: fixed;
+  }
+  .bg-center {
+    background-position: center;
+  }
   .bg-no-repeat {
     background-repeat: no-repeat;
+  }
+  .object-contain {
+    object-fit: contain;
+  }
+  .object-cover {
+    object-fit: cover;
+  }
+  .p-0 {
+    padding: calc(var(--spacing) * 0);
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);
@@ -1052,6 +1070,11 @@
   .md\:gap-y-0 {
     @media (width >= 48rem) {
       row-gap: calc(var(--spacing) * 0);
+    }
+  }
+  .md\:bg-cover {
+    @media (width >= 48rem) {
+      background-size: cover;
     }
   }
   .md\:pr-0 {
