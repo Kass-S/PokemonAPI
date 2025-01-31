@@ -1148,6 +1148,11 @@
       column-gap: calc(var(--spacing) * 10);
     }
   }
+  .lg\:overflow-y-hidden {
+    @media (width >= 64rem) {
+      overflow-y: hidden;
+    }
+  }
   .lg\:bg-cover {
     @media (width >= 64rem) {
       background-size: cover;
