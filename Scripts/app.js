@@ -4,6 +4,7 @@ let pkmnUserSearchBtn = document.getElementById("pkmnUserSearchBtn");
 let pkmnUserSearch = document.getElementById("pkmnUserSearch");
 let pkmnRandom = document.getElementById("pkmnRandom");
 let showFavoritesBtn = document.getElementById("showFavoritesBtn");
+let exitFavorites = document.getElementById("exitFavorites");
 let favoritesList = document.getElementById("favoritesList");
 
 let pkmnAbilities = document.getElementById("pkmnAbilities");
@@ -149,7 +150,7 @@ const GetFavoritePokemon = async () => {
         console.log(pokemon);
 
         let p = document.createElement('p');
-        p.className = "mb-6 text-lg text-white mt-5";
+        p.className = "mx-5 mb-6 text-lg text-white mt-5";
         p.innerText = pokemon;
 
         let removeBtn = document.createElement('i');
@@ -193,11 +194,14 @@ pkmnRandom.addEventListener('click', async () => {
 
 addFavoriteBtn.addEventListener('click', async () => {
     const pkmn = await GetPokemon(userSearch);
-    console.log(pkmn.id);
     let pkmnFavorite = pkmn.name;
     saveToFavorites(pkmnFavorite);    
 })
 
 showFavoritesBtn.addEventListener('click', () => {
     GetFavoritePokemon();
+})
+
+exitFavorites.addEventListener('click', () => {
+    favoritesList.innerHTML = "";
 })
