@@ -10,6 +10,7 @@ let pkmnMoves = document.getElementById("pkmnMoves");
 let pkmnImage = document.getElementById("pkmnImage");
 let pkmnNameNumber = document.getElementById("pkmnNameNumber");
 let pokemonShinyBtn = document.getElementById("pokemonShinyBtn");
+let addFavoriteBtn = document.getElementById("addFavoriteBtn");
 
 let pkmnType = document.getElementById("pkmnType");
 let pkmnEvolutionLine = document.getElementById("pkmnEvolutionLine");
@@ -141,9 +142,14 @@ pokemonShinyBtn.addEventListener('click', async () => {
 pkmnUserSearchBtn.addEventListener('click', async () => {
     userSearch = pkmnUserSearch.value;
     GetAllPokemon(userSearch);
+    pkmnUserSearch.value = "";
 })
 
 pkmnRandom.addEventListener('click', async () => {
-    userSearch = Math.floor(Math.random() * 650)
+    userSearch = Math.floor(Math.random() * 650);
     GetAllPokemon(userSearch);
+})
+
+addFavoriteBtn.addEventListener('click', async () => {
+    console.log(userSearch);
 })
