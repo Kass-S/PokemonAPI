@@ -199,7 +199,7 @@ pkmnUserSearchBtn.addEventListener('click', async () => {
 })
 
 pkmnRandom.addEventListener('click', async () => {
-    userSearch = Math.floor(Math.random() * 650);
+    userSearch = Math.floor(Math.random() * 649);
     GetAllPokemon(userSearch);
 })
 
